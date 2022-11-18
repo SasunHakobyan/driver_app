@@ -16,7 +16,7 @@ const DriverList = (pops) => {
 
     let drivers = [driver1, driver2];
     let driversElements = drivers.map(driver => {
-        return <Driver driver={driver} />
+        return <Driver driver={driver}/>
     })
 
     return (
