@@ -1,28 +1,39 @@
 const {postgresClient, mongoClient} = require("./db/index");
 const queries = require("./db/queries");
 
-const DriverController = require('./controllers/DriverController');
-
 const express = require('express');
 const app = express();
 const port = 5500;
-
-const driverController = new DriverController(postgresClient, mongoClient);
 
 postgresClient.query(queries.createTableQuery, (err, res) => {
     if (err) console.log(err);
 });
 
 app.get('/getDrivers', (req, res) => {
-    driverController.getDrivers()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    const data = [
+        {
+            id: '6377e4dc0f09386ed3f0fc4e',
+            username: 'sasunhakobyan',
+            password: '12345',
+            tariff: 'comfort',
+            rating: 5,
+            register_date: '2022-11-18'
+        },
+        {
+            id: '6377e4dc0f09386ed3f02345e',
+            username: 'mikel',
+            password: 'root',
+            tariff: 'econom',
+            rating: 3,
+            register_date: '2022-11-13'
+        }
+    ];
+
+    res.json(data);
 });
 
 app.listen(port, () => {
     console.log(`Running on ${port}`);
 });
+
+postgresClient.end();

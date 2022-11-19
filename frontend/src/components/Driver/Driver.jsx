@@ -3,9 +3,10 @@ const Driver = (props) => {
 
     return (
         <tr>
-            <td>{driver.id}</td>
-            <td>{driver.userName}</td>
+            <td>{driver.username}</td>
             <td>{driver.tariff}</td>
+            <td>{driver.rating}</td>
+            <td>{driver.register_date}</td>
         </tr>
     );
 }

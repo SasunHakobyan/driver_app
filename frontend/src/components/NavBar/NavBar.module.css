@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: darkorange;
+}
+
+.navItem {
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+}
