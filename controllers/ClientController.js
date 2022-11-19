@@ -4,6 +4,13 @@ class ClientController {
         this.mongoClient = mongoClient;
     }
 
+    getClients() {
+        const driverDb = this.mongoClient.db('driver_app');
+        const clientCollection = driverDb.collection('client');
+        const clients = clientCollection.find({}).toArray();
+        return clients;
+    }
+
     insertData({username, password, card_credentials, register_date}) {
         const queryString = `INSERT INTO client(username, password, card_credentials, register_date) VALUES ('${username}', '${password}', '${card_credentials}', '${register_date}');`;
         const driverDb = this.mongoClient.db("driver_app");
