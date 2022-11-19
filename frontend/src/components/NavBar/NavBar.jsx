@@ -14,13 +14,24 @@ const NavBar = (props) => {
             });
     }
 
+    const setClientsOnClick = () => {
+        fetch("http://localhost:5500/getClients")
+            .then(res => res.json())
+            .then(res => {
+                props.setClient(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     return (
         <div className={classes.header}>
             <div className={classes.navItem}>
                 <NavLink onClick={setDriversOnClick} className={classes.navLink} to='/drivers'>Drivers</NavLink>
             </div>
             <div className={classes.navItem}>
-                <NavLink className={classes.navLink} to='/users'>Users</NavLink>
+                <NavLink onClick={setClientsOnClick} className={classes.navLink} to='/clients'>Clients</NavLink>
             </div>
             <div className={classes.navItem}>
                 <NavLink className={classes.navLink} to='order'>Order</NavLink>

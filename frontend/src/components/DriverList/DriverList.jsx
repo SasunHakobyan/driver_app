@@ -3,7 +3,7 @@ import classes from './DriverList.module.css';
 
 const DriverList = (props) => {
     let driversElements = props.drivers.map(driver => {
-        return <Driver driver={driver}/>
+        return <Driver key={driver._id} driver={driver}/>
     })
 
     return (
