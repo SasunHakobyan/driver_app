@@ -14,6 +14,10 @@ class DriverList extends React.Component {
         this.setDriversState();
     }
 
+    componentWillUnmount() {
+        this.setState({});
+    }
+
     setDriversState() {
         fetch("http://localhost:5500/getDrivers")
             .then(res => res.json())
