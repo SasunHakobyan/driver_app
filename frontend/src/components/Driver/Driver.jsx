@@ -2,7 +2,7 @@ const Driver = (props) => {
     const driver = props.driver;
 
     return (
-        <tr>
+        <tr className='driver-row'>
             <td>{driver.username}</td>
             <td>{driver.tariff}</td>
             <td>{driver.rating}</td>
