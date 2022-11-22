@@ -7,11 +7,8 @@ import ClientList from "./components/ClientList/ClientList";
 
 function App() {
 
-    const initialDriversState = [];
-    const [driversState, setDrivers] = useState(initialDriversState);
-
-    const initialClientsState = [];
-    const [clientsState, setClients] = useState(initialClientsState);
+    const [driversState, setDrivers] = useState([]);
+    const [clientsState, setClients] = useState([]);
 
     return (
         <BrowserRouter>
