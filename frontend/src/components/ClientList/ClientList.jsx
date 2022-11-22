@@ -14,6 +14,10 @@ class ClientList extends React.Component {
         this.setClientsState();
     }
 
+    componentWillUnmount() {
+        this.setState({});
+    }
+
     setClientsState() {
         fetch("http://localhost:5500/getClients")
             .then(res => res.json())

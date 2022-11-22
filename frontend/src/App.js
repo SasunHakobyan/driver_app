@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import DriverList from "./components/DriverList/DriverList";
 import NavBar from "./components/NavBar/NavBar";
+import DriverList from "./components/DriverList/DriverList";
 import ClientList from "./components/ClientList/ClientList";
 
 function App() {
