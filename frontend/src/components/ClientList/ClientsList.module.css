@@ -1,0 +1,17 @@
+.clientsListContainer {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clientsData {
+
+}
+
+.clientsData td,
+.clientsData th {
+    font-size: 20px;
+    padding: 10px;
+    width: 100px;
+}

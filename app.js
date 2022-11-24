@@ -1,27 +1,21 @@
-const {postgresClient, mongoClient} = require("./db/index");
-const queries = require("./db/queries");
-
-const DriverController = require('./controllers/DriverController');
+require('./db/setupDb')();
 
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5500;
 
-const driverController = new DriverController(postgresClient, mongoClient);
+const clientsRouter = require('./routes/clientsRouter');
+const driversRouter = require('./routes/driversRouter');
 
-postgresClient.query(queries.createTableQuery, (err, res) => {
-    if (err) console.log(err);
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
-app.get('/getDrivers', (req, res) => {
-    driverController.getDrivers()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-});
+app.use('/clients', clientsRouter);
+app.use('/drivers', driversRouter);
 
 app.listen(port, () => {
     console.log(`Running on ${port}`);
