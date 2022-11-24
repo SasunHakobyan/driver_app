@@ -1,58 +1,47 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Driver from "../Driver/Driver";
 import classes from './DriverList.module.css';
 
-class DriverList extends React.Component {
+function DriverList(props) {
 
-    constructor(props) {
-        super(props);
+    const [drivers, setDrivers] = useState([]);
 
-        this.state = {};
+    async function fetchDrivers() {
+        try {
+            const response = await fetch('http://localhost:5500/getDrivers');
+            const drivers = await response.json();
+            setDrivers(drivers);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
-    componentDidMount() {
-        this.setDriversState();
-    }
+    useEffect(() => {
+        fetchDrivers();
+    }, []);
 
-    componentWillUnmount() {
-        this.setState({});
-    }
-
-    setDriversState() {
-        fetch("http://localhost:5500/getDrivers")
-            .then(res => res.json())
-            .then(res => {
-                this.setState({drivers:res});
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
-    render() {
-        return (
-            <div className={classes.driversListContainer}>
-                <h3>Drivers</h3>
-                <table className={classes.driversData}>
-                    <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Tariff</th>
-                        <th>Rating</th>
-                        <th>Register Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        this.state.drivers?.map(driver => {
-                            return <Driver key={driver._id} driver={driver}/>
-                        })
-                    }
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+    return (
+        <div className={classes.driversListContainer}>
+            <h3>Drivers</h3>
+            <table className={classes.driversData}>
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Tariff</th>
+                    <th>Rating</th>
+                    <th>Register Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    drivers.map(driver => {
+                        return <Driver key={driver._id} driver={driver}/>
+                    })
+                }
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default DriverList;
