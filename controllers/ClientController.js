@@ -1,5 +1,5 @@
 class ClientController {
-    constructor(postgresClient, mongoClient) {
+    constructor(mongoClient) {
         this.mongoClient = mongoClient;
     }
 
@@ -10,6 +10,7 @@ class ClientController {
             const clients = clientCollection.find({}).toArray();
             return clients;
         } catch (err) {
+            console.log(err);
             throw new err;
         }
     }
@@ -21,6 +22,7 @@ class ClientController {
             const clients = clientCollection.findOne(findCriteria);
             return clients;
         } catch (err) {
+            console.log(err);
             throw new err;
         }
     }
@@ -36,6 +38,7 @@ class ClientController {
             return insertResult;
 
         } catch (err) {
+            console.log(err);
             throw new err;
         }
     }
