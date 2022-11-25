@@ -13,7 +13,19 @@ const errorResponse = {
     data: null
 };
 
-router.get('/getClients', async (req, res) => {
+router.get('/:id', async (req, res) => {
+    try {
+        const client = await clientController.getClient({_id: ObjectId(req.params.id)});
+        res.json({
+            responseCode: 0,
+            data: {client}
+        });
+    } catch (err) {
+        res.json(errorResponse);
+    }
+})
+
+router.get('/', async (req, res) => {
     try {
         const clients = await clientController.getClients();
         res.json({
@@ -26,22 +38,10 @@ router.get('/getClients', async (req, res) => {
     }
 });
 
-router.get('/getClient/:id', async (req, res) => {
-    try {
-        const client = await clientController.getClient({_id: ObjectId(req.params.id)});
-        res.json({
-            responseCode: 0,
-            data: {client}
-        });
-    } catch (err) {
-        res.json(errorResponse);
-    }
-})
-
 router.post('/addClient', async (req,res) => {
     try {
         const {username, password, cardCredentials} = req.body;
-        const insertResult = await clientController.insertData({username, password, cardCredentials});
+        const insertResult = await clientController.insertUser({username, password, cardCredentials});
 
         res.json({
             responseCode: 0,
@@ -52,5 +52,18 @@ router.post('/addClient', async (req,res) => {
     }
 });
 
+router.delete('/deleteClient', async (req,res) => {
+    try {
+        const clientId = req.body.clientId;
+        const deleteResult = await clientController.deleteClient(clientId);
+
+        res.json({
+            responseCode: 0,
+            data: {deleteResult}
+        });
+    } catch (err) {
+        res.json(errorResponse);
+    }
+});
 
 module.exports = router;
