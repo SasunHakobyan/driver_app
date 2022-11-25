@@ -1,34 +1,43 @@
 class ClientController {
     constructor(postgresClient, mongoClient) {
-        this.postgresClient = postgresClient;
         this.mongoClient = mongoClient;
     }
 
     getClients() {
-        const driverDb = this.mongoClient.db('driver_app');
-        const clientCollection = driverDb.collection('client');
-        const clients = clientCollection.find({}).toArray();
-        return clients;
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const clientCollection = driverDb.collection('client');
+            const clients = clientCollection.find({}).toArray();
+            return clients;
+        } catch (err) {
+            throw new err;
+        }
     }
 
-    insertData({username, password, card_credentials, register_date}) {
-        const queryString = `INSERT INTO client(username, password, card_credentials, register_date) VALUES ('${username}', '${password}', '${card_credentials}', '${register_date}');`;
-        const driverDb = this.mongoClient.db("driver_app");
+    getClient(findCriteria = {}) {
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const clientCollection = driverDb.collection('client');
+            const clients = clientCollection.findOne(findCriteria);
+            return clients;
+        } catch (err) {
+            throw new err;
+        }
+    }
 
-        return this.postgresClient
-            .query(queryString)
-            .then(res => {
-                console.log("Client inserted in POSTGRES");
+    insertData({username, password, cardCredentials}) {
+        try {
+            const currentTime = new Date();
+            const registerDate = `${currentTime.getFullYear()}-${currentTime.getMonth()}-${currentTime.getDate()}`;
 
-                const clientCollection = driverDb.collection("client");
-                clientCollection.insertOne({username, password, card_credentials, register_date});
-                console.log("Client inserted in MONGO");
+            const driverDb = this.mongoClient.db("driver_app");
+            const clientCollection = driverDb.collection("client");
+            const insertResult = clientCollection.insertOne({username, password, cardCredentials, registerDate});
+            return insertResult;
 
-                return true;
-            })
-            .catch(err => {
-                throw new err;
-            });
+        } catch (err) {
+            throw new err;
+        }
     }
 }
 

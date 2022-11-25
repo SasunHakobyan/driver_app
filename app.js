@@ -7,6 +7,8 @@ const port = 5500;
 const clientsRouter = require('./routes/clientsRouter');
 const driversRouter = require('./routes/driversRouter');
 
+app.use(express.json());
+
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -14,8 +16,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/clients', clientsRouter);
-app.use('/drivers', driversRouter);
+app.use('/api/clients', clientsRouter);
+app.use('/api/drivers', driversRouter);
 
 app.listen(port, () => {
     console.log(`Running on ${port}`);
