@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import DriverList from "./components/DriverList/DriverList";
-import ClientList from "./components/ClientList/ClientList";
+import ClientApi from "./components/ClientList/ClientApi";
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
                     <div className="app-wrapper-content">
                         <Routes>
                             <Route path='/drivers' element={<DriverList />}/>
-                            <Route path='/clients' element={<ClientList />} />
+                            <Route path='/clients' element={<ClientApi />} />
                         </Routes>
                     </div>
                 </div>
