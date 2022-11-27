@@ -1,34 +1,57 @@
+const {ObjectId} = require("mongodb");
+
 class DriverController {
-    constructor(postgresClient, mongoClient) {
-        this.postgresClient = postgresClient;
+    constructor(mongoClient) {
         this.mongoClient = mongoClient;
     }
 
     getDrivers() {
-        const driverDb = this.mongoClient.db('driver_app');
-        const driverCollection = driverDb.collection('driver');
-        const drivers = driverCollection.find({}).toArray();
-        return drivers;
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const driverCollection = driverDb.collection('driver');
+            return driverCollection.find({}).toArray();
+        } catch (err) {
+            console.log(err);
+            throw new err;
+        }
     }
 
-    insertData({username, password, tariff, rating, register_date}) {
-        const queryString = `INSERT INTO driver(username, password, tariff, rating, register_date) VALUES ('${username}', '${password}', '${tariff}', ${rating}, '${register_date}')`;
-        const driverDb = this.mongoClient.db("driver_app");
+    getDriver(findCriteria = {}) {
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const driverCollection = driverDb.collection('driver');
+            return driverCollection.findOne(findCriteria);
+        } catch (err) {
+            console.log(err);
+            throw new err;
+        }
+    }
 
-        return this.postgresClient
-            .query(queryString)
-            .then(res => {
-                console.log("Driver inserted in POSTGRES");
+    async insertDriver({username, password, tariff, rating}) {
+        try {
+            const currentTime = new Date();
+            const registerDate = `${currentTime.getFullYear()}-${currentTime.getMonth()}-${currentTime.getDate()}`;
 
-                const driverCollection = driverDb.collection("driver");
-                driverCollection.insertOne({username, password, tariff, rating, register_date});
-                console.log("Driver inserted in MONGO");
+            const driverDb = this.mongoClient.db("driver_app");
+            const driverCollection = driverDb.collection("driver");
 
-                return true;
-            })
-            .catch(err => {
-                throw new err;
-            })
+            return await driverCollection.insertOne({username, password, tariff, rating, registerDate});
+        } catch (err) {
+            console.log(err);
+            throw new err;
+        }
+    }
+
+    deleteDriver(driverId) {
+        try {
+            const driverDb = this.mongoClient.db("driver_app");
+            const driverCollection = driverDb.collection("driver");
+            return driverCollection.deleteOne({_id: ObjectId(driverId)});
+
+        } catch (err) {
+            console.log(err);
+            throw new err;
+        }
     }
 }
 

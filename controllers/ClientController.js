@@ -9,8 +9,7 @@ class ClientController {
         try {
             const driverDb = this.mongoClient.db('driver_app');
             const clientCollection = driverDb.collection('client');
-            const clients = clientCollection.find({}).toArray();
-            return clients;
+            return clientCollection.find({}).toArray();
         } catch (err) {
             console.log(err);
             throw new err;
@@ -21,8 +20,7 @@ class ClientController {
         try {
             const driverDb = this.mongoClient.db('driver_app');
             const clientCollection = driverDb.collection('client');
-            const clients = clientCollection.findOne(findCriteria);
-            return clients;
+            return clientCollection.findOne(findCriteria);
         } catch (err) {
             console.log(err);
             throw new err;
@@ -36,8 +34,7 @@ class ClientController {
 
             const driverDb = this.mongoClient.db("driver_app");
             const clientCollection = driverDb.collection("client");
-            const insertResult = clientCollection.insertOne({username, password, cardCredentials, registerDate});
-            return insertResult;
+            return clientCollection.insertOne({username, password, cardCredentials, registerDate});
 
         } catch (err) {
             console.log(err);
@@ -49,8 +46,7 @@ class ClientController {
         try {
             const driverDb = this.mongoClient.db("driver_app");
             const clientCollection = driverDb.collection("client");
-            const result = clientCollection.deleteOne({_id: ObjectId(clientId)});
-            return result;
+            return clientCollection.deleteOne({_id: ObjectId(clientId)});
 
         } catch (err) {
             console.log(err);
