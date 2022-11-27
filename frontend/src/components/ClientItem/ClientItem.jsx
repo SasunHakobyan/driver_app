@@ -1,9 +1,13 @@
+import {NavLink} from "react-router-dom";
+
 const ClientItem = (props) => {
+    const client = props.client;
+
     return (
-        <tr key={props.client._id}>
-            <td>{props.client.username}</td>
-            <td>{props.client.cardCredentials}</td>
-            <td>{props.client.registerDate}</td>
+        <tr key={client._id}>
+            <td><NavLink to={`/editClient/:${client._id}`}>{client.username}</NavLink></td>
+            <td>{client.cardCredentials}</td>
+            <td>{client.registerDate}</td>
             <td><button onClick={() => {props.deleteClient(props.client._id)}}>Delete</button></td>
         </tr>
     );

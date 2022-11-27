@@ -51,6 +51,23 @@ router.post('/addDriver', async (req, res) => {
     }
 });
 
+
+
+router.post('/updateDriver', async(req, res) => {
+    try {
+        const updateData = req.body.updateData;
+        const updateResult = await driverController.updateDriver(req.body.driverId, updateData);
+
+        res.json({
+            responseCode: 0,
+            data: {updateResult}
+        });
+
+    } catch (err) {
+        res.json(errorResponse);
+    }
+})
+
 router.delete('/deleteDriver', async (req, res) => {
     try {
         const driverId = req.body.driverId;

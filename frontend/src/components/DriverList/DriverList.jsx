@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from "react";
-import Driver from "../Driver/Driver";
+import DriverItem from "../DriverItem/DriverItem";
 import classes from './DriverList.module.css';
-import DriverForm from "../DriverForm/DriverForm";
+import EditForm from "../EditForm/EditForm";
 
 function DriverList(props) {
+
+    const fields = [
+        {fieldName: 'username'},
+        {fieldName: 'password'},
+        {fieldName: 'tariff'},
+        {fieldName: 'rating'}
+    ];
 
     return (
         <div className={classes.driversListContainer}>
             <h2>Drivers</h2>
-            <DriverForm newDriverData={props.drivers.newDriver} addDriver={props.addDriver} onNewDataChange={props.onNewDataChange} />
+            <EditForm actionType='add' fields={fields} newFormData={props.drivers.newDriver} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
             <table className={classes.driversData}>
                 <thead>
                 <tr>
@@ -21,7 +28,7 @@ function DriverList(props) {
                 <tbody>
                 {
                     props.drivers.allDrivers.map(driver => {
-                        return <Driver key={driver._id} driver={driver} deleteDriver={props.deleteDriver}/>
+                        return <DriverItem key={driver._id} driver={driver} deleteDriver={props.deleteDriver}/>
                     })
                 }
                 </tbody>

@@ -1,13 +1,19 @@
 import classes from "../ClientList/ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
-import ClientForm from "../ClientForm/ClientForm";
+import EditForm from "../EditForm/EditForm";
 
 function ClientList(props) {
+
+    const fields = [
+        {fieldName: 'username'},
+        {fieldName: 'password'},
+        {fieldName: 'cardCredentials'},
+    ]
 
     return (
         <div className={classes.clientsListContainer}>
             <h2>Clients</h2>
-            <ClientForm newClientData={props.clients.newClient} addClient={props.addClient} onNewDataChange={props.onNewDataChange} />
+            <EditForm actionType='add' fields={fields} newFormData={props.clients.newClient} saveData={props.addClient} onNewDataChange={props.onNewDataChange} />
             <table className={classes.clientsData}>
                 <thead>
                 <tr>

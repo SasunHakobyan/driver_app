@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import ClientApi from "./components/ClientList/ClientApi";
 import DriverApi from "./components/DriverList/DriverApi";
+import EditForm from "./components/EditForm/EditForm";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                         <Routes>
                             <Route path='/drivers' element={<DriverApi />}/>
                             <Route path='/clients' element={<ClientApi />} />
+                            <Route path='/editClient/:id' element={<EditForm />} />
                         </Routes>
                     </div>
                 </div>

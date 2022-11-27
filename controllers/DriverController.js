@@ -42,6 +42,17 @@ class DriverController {
         }
     }
 
+    async updateDriver(driverId, updateData) {
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const driverCollection = driverDb.collection('driver');
+
+            return await driverCollection.updateOne({_id: ObjectId(driverId)}, {$set:updateData});
+        } catch (err) {
+
+        }
+    }
+
     deleteDriver(driverId) {
         try {
             const driverDb = this.mongoClient.db("driver_app");

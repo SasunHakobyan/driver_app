@@ -1,9 +1,11 @@
-const Driver = (props) => {
+import {NavLink} from "react-router-dom";
+
+const DriverItem = (props) => {
     const driver = props.driver;
 
     return (
         <tr className='driver-row'>
-            <td>{driver.username}</td>
+            <td><NavLink to={`/editDriver/${driver._id}`}>{driver.username}</NavLink></td>
             <td>{driver.tariff}</td>
             <td>{driver.rating}</td>
             <td>{driver.registerDate}</td>
@@ -12,4 +14,4 @@ const Driver = (props) => {
     );
 }
 
-export default Driver;
+export default DriverItem;
