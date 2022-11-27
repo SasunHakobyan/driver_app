@@ -1,8 +1,8 @@
 import React from 'react';
 
-import classes from './AddField.module.css';
+import classes from './ClientForm.module.css';
 
-const AddField = (props) => {
+const ClientForm = (props) => {
     return (
         <div>
             <div className={classes.inputBlock}>
@@ -22,4 +22,4 @@ const AddField = (props) => {
     );
 };
 
-export default AddField;
+export default ClientForm;

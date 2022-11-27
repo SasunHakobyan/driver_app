@@ -1,13 +1,13 @@
 import classes from "../ClientList/ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
-import AddField from "../AddField/AddField";
+import ClientForm from "../AddField/ClientForm";
 
 function ClientList(props) {
 
     return (
         <div className={classes.clientsListContainer}>
             <h2>Clients</h2>
-            <AddField newClientData={props.clients.newClient} addClient={props.addClient} onNewDataChange={props.onNewDataChange} />
+            <ClientForm newClientData={props.clients.newClient} addClient={props.addClient} onNewDataChange={props.onNewDataChange} />
             <table className={classes.clientsData}>
                 <thead>
                 <tr>
