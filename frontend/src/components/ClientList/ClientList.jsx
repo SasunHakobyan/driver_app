@@ -1,6 +1,6 @@
 import classes from "../ClientList/ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
-import ClientForm from "../AddField/ClientForm";
+import ClientForm from "../ClientForm/ClientForm";
 
 function ClientList(props) {
 

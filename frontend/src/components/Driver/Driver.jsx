@@ -6,7 +6,8 @@ const Driver = (props) => {
             <td>{driver.username}</td>
             <td>{driver.tariff}</td>
             <td>{driver.rating}</td>
-            <td>{driver.register_date}</td>
+            <td>{driver.registerDate}</td>
+            <td><button onClick={() => props.deleteDriver(driver._id)}>Delete</button></td>
         </tr>
     );
 }

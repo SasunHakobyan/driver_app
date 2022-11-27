@@ -49,7 +49,7 @@ router.post('/addDriver', async (req, res) => {
     } catch (err) {
         res.json(errorResponse);
     }
-})
+});
 
 router.delete('/deleteDriver', async (req, res) => {
     try {
