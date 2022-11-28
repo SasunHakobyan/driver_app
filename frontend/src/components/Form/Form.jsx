@@ -7,7 +7,10 @@ const Form = (props) => {
         return (
             <div className={classes.inputBlock}>
                 <div className={classes.fieldText}>Enter {field.fieldName}</div>
-                <input value={props.formData[field.fieldName]} onChange={e => props.onNewDataChange(field.fieldName, e.target.value)} type='text' />
+                <input
+                    value={props.formData[field.fieldName]}
+                    onChange={e => props.onNewDataChange(field.fieldName, e.target.value)}
+                    type={field.fieldName === 'password' ? 'password' : 'text'} />
             </div>
         );
     });
