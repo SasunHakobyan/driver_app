@@ -6,7 +6,7 @@ const Form = (props) => {
     const formFields = props.fields.map(field => {
         return (
             <div className={classes.inputBlock}>
-                Enter {field.fieldName}
+                <div className={classes.fieldText}>Enter {field.fieldName}</div>
                 <input value={props.formData[field.fieldName]} onChange={e => props.onNewDataChange(field.fieldName, e.target.value)} type='text' />
             </div>
         );

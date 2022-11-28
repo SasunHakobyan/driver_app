@@ -14,7 +14,7 @@ function ClientList(props) {
     return (
         <div className={classes.clientsListContainer}>
             <h2>Clients</h2>
-            <Form fields={fields} actionType='add' formData={props.clients.newClient} saveData={props.addClient} onNewDataChange={props.onNewDataChange} />
+            <Form fields={fields} actionType='add' formData={props.clients.clientFormData} saveData={props.addClient} onNewDataChange={props.onNewDataChange} />
             <table className={classes.clientsData}>
                 <thead>
                 <tr>

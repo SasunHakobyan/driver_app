@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import ClientList from "./ClientList";
 
-const ClientListApi = () => {
+const ClientListApi = (props) => {
 
     const initialState = {
-        newClient: {
-            username: '',
-            password: '',
-            cardCredentials: ''
-        },
+        clientFormData: {},
         allClients: []
     }
 
@@ -21,11 +17,7 @@ const ClientListApi = () => {
 
             const newState = {
                 ...clients,
-                newClient: {
-                    username: '',
-                    password: '',
-                    cardCredentials: ''
-                },
+                clientFormData: {},
                 allClients: clientData.data.clients
             };
 
@@ -35,24 +27,20 @@ const ClientListApi = () => {
         }
     }
 
-    useEffect(() => {
-        fetchClients();
-    }, []);
-
     const onNewDataChange = (fieldName, value) => {
         const newState = {
             ...clients,
-            newClient: {
-                ...clients.newClient
+            clientFormData: {
+                ...clients.clientFormData
             }
         }
 
-        newState.newClient[fieldName] = value;
+        newState.clientFormData[fieldName] = value;
         setClients(newState);
     }
 
     const addClient = async () => {
-        const newClient = {...clients.newClient};
+        const newClient = {...clients.clientFormData};
 
         try {
             const response = await fetch('http://localhost:5500/api/clients/addClient', {
@@ -76,11 +64,15 @@ const ClientListApi = () => {
                 body: JSON.stringify({clientId: clientId})
             });
 
-            await fetchClients()
+            await fetchClients();
         } catch (err) {
             console.log(err);
         }
     }
+
+    useEffect(() => {
+        fetchClients();
+    }, []);
 
     return (
         <ClientList

@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import DriverList from "./DriverList";
 
-const DriverApi = () => {
+const DriverListApi = (props) => {
 
     const initialState = {
-        newDriver: {
-            username: '',
-            password: '',
-            tariff: '',
-            rating: ''
-        },
+        driverFormData: {},
         allDrivers: []
     }
 
@@ -22,12 +17,7 @@ const DriverApi = () => {
 
             const newState = {
                 ...drivers,
-                newDriver: {
-                    username: '',
-                    password: '',
-                    tariff: '',
-                    rating: ''
-                },
+                driverFormData: {},
                 allDrivers: driversData.data.drivers
             }
 
@@ -38,24 +28,20 @@ const DriverApi = () => {
         }
     }
 
-    useEffect(() => {
-        fetchDrivers();
-    }, []);
-
     const onNewDataChange = (fieldName, value) => {
         const newState = {
             ...drivers,
-            newDriver: {
-                ...drivers.newDriver
+            driverFormData: {
+                ...drivers.driverFormData
             }
         }
 
-        newState.newDriver[fieldName] = value;
+        newState.driverFormData[fieldName] = value;
         setDrivers(newState);
     }
 
     const addDriver = async () => {
-        const newDriver = {...drivers.newDriver};
+        const newDriver = {...drivers.driverFormData};
 
         try {
             const response = await fetch('http://localhost:5500/api/drivers/addDriver', {
@@ -84,6 +70,10 @@ const DriverApi = () => {
         }
     }
 
+    useEffect(() => {
+        fetchDrivers();
+    }, []);
+
     return (
         <DriverList
             drivers={drivers}
@@ -94,4 +84,4 @@ const DriverApi = () => {
     );
 };
 
-export default DriverApi;
+export default DriverListApi;

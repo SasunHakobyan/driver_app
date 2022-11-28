@@ -4,6 +4,7 @@ import classes from './DriverList.module.css';
 import Form from "../Form/Form";
 
 function DriverList(props) {
+
     const fields = [
         {fieldName: 'username'},
         {fieldName: 'password'},
@@ -14,7 +15,7 @@ function DriverList(props) {
     return (
         <div className={classes.driversListContainer}>
             <h2>Drivers</h2>
-            <Form fields={fields} actionType='add' formData={props.drivers.newDriver} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
+            <Form fields={fields} actionType='add' formData={props.drivers.driverFormData} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
             <table className={classes.driversData}>
                 <thead>
                 <tr>
