@@ -1,9 +1,10 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import ClientApi from "./components/ClientList/ClientApi";
+import ClientListApi from "./components/ClientList/ClientListApi";
 import DriverApi from "./components/DriverList/DriverApi";
-import EditForm from "./components/EditForm/EditForm";
+import EditClient from "./components/EditClient/EditClient";
+import EditDriver from "./components/EditDriver/EditDriver";
 
 function App() {
 
@@ -15,8 +16,9 @@ function App() {
                     <div className="app-wrapper-content">
                         <Routes>
                             <Route path='/drivers' element={<DriverApi />}/>
-                            <Route path='/clients' element={<ClientApi />} />
-                            <Route path='/editClient/:id' element={<EditForm />} />
+                            <Route path='/clients' element={<ClientListApi />} />
+                            <Route path='/editClient/:clientId' element={<EditClient />} />
+                            <Route path='/editDriver/:driverId' element={<EditDriver />} />
                         </Routes>
                     </div>
                 </div>

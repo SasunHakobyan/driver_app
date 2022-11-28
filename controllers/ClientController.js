@@ -42,6 +42,18 @@ class ClientController {
         }
     }
 
+    async updateClient(clientId, updateData) {
+        try {
+            const driverDb = this.mongoClient.db('driver_app');
+            const clientCollection = driverDb.collection('client');
+
+            return await clientCollection.updateOne({_id: ObjectId(clientId)}, {$set: updateData});
+        } catch (err) {
+            console.log(err);
+            throw new err;
+        }
+    }
+
     deleteClient(clientId) {
         try {
             const driverDb = this.mongoClient.db("driver_app");

@@ -1,6 +1,7 @@
 import classes from "../ClientList/ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
-import EditForm from "../EditForm/EditForm";
+import Form from "../Form/Form";
+import React from "react";
 
 function ClientList(props) {
 
@@ -13,7 +14,7 @@ function ClientList(props) {
     return (
         <div className={classes.clientsListContainer}>
             <h2>Clients</h2>
-            <EditForm actionType='add' fields={fields} newFormData={props.clients.newClient} saveData={props.addClient} onNewDataChange={props.onNewDataChange} />
+            <Form fields={fields} actionType='add' formData={props.clients.newClient} saveData={props.addClient} onNewDataChange={props.onNewDataChange} />
             <table className={classes.clientsData}>
                 <thead>
                 <tr>

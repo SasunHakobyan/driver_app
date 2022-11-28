@@ -52,6 +52,20 @@ router.post('/addClient', async (req,res) => {
     }
 });
 
+router.post('/updateClient', async (req, res) => {
+    try {
+        const updateData = req.body.updateData;
+        const updateResult = await clientController.updateClient(req.body.clientId, updateData);
+
+        res.json({
+            responseCode: 0,
+            data: {updateResult}
+        });
+    } catch (err) {
+        res.json(errorResponse);
+    }
+})
+
 router.delete('/deleteClient', async (req,res) => {
     try {
         const clientId = req.body.clientId;

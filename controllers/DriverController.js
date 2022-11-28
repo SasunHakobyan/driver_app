@@ -49,7 +49,8 @@ class DriverController {
 
             return await driverCollection.updateOne({_id: ObjectId(driverId)}, {$set:updateData});
         } catch (err) {
-
+            console.log(err);
+            throw new err;
         }
     }
 

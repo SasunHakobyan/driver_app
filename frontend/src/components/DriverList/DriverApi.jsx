@@ -50,26 +50,8 @@ const DriverApi = () => {
             }
         }
 
-        switch (fieldName) {
-            case 'username':
-                newState.newDriver.username = value;
-                setDrivers(newState);
-                break;
-            case 'password':
-                newState.newDriver.password = value;
-                setDrivers(newState);
-                break;
-            case 'tariff':
-                newState.newDriver.tariff = value;
-                setDrivers(newState);
-                break;
-            case 'rating':
-                newState.newDriver.rating = value;
-                setDrivers(newState);
-                break;
-            default:
-                break;
-        }
+        newState.newDriver[fieldName] = value;
+        setDrivers(newState);
     }
 
     const addDriver = async () => {

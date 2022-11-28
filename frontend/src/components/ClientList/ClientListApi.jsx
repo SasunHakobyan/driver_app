@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ClientList from "./ClientList";
 
-const ClientApi = () => {
+const ClientListApi = () => {
 
     const initialState = {
         newClient: {
@@ -47,22 +47,8 @@ const ClientApi = () => {
             }
         }
 
-        switch (fieldName) {
-            case 'username':
-                newState.newClient.username = value;
-                setClients(newState);
-                break;
-            case 'cardCredentials':
-                newState.newClient.cardCredentials = value;
-                setClients(newState);
-                break;
-            case 'password':
-                newState.newClient.password = value;
-                setClients(newState);
-                break;
-            default:
-                break;
-        }
+        newState.newClient[fieldName] = value;
+        setClients(newState);
     }
 
     const addClient = async () => {
@@ -106,4 +92,4 @@ const ClientApi = () => {
     );
 };
 
-export default ClientApi;
+export default ClientListApi;

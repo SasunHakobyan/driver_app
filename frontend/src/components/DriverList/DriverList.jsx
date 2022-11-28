@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import DriverItem from "../DriverItem/DriverItem";
 import classes from './DriverList.module.css';
-import EditForm from "../EditForm/EditForm";
+import Form from "../Form/Form";
 
 function DriverList(props) {
-
     const fields = [
         {fieldName: 'username'},
         {fieldName: 'password'},
@@ -15,7 +14,7 @@ function DriverList(props) {
     return (
         <div className={classes.driversListContainer}>
             <h2>Drivers</h2>
-            <EditForm actionType='add' fields={fields} newFormData={props.drivers.newDriver} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
+            <Form fields={fields} actionType='add' formData={props.drivers.newDriver} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
             <table className={classes.driversData}>
                 <thead>
                 <tr>
