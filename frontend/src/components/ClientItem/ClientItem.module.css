@@ -1,0 +1,8 @@
+.btnDanger {
+    padding: 8px;
+    background-color: #ff1b1b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}

@@ -15,7 +15,7 @@ const Form = (props) => {
     return (
         <div>
             {formFields}
-            <button onClick={props.saveData}>Save</button>
+            <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
         </div>
     );
 };

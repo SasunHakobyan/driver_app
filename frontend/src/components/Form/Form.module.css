@@ -5,3 +5,12 @@
 .inputBlock input {
     margin-left: 5px;
 }
+
+.btnSuccess {
+    padding: 8px;
+    background-color: forestgreen;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
