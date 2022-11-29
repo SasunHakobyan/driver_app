@@ -26,11 +26,14 @@ const DriverForm = (props) => {
                     type='text' />
             </div>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Enter Rating</div>
-                <input
-                    value={props.formData.rating}
-                    onChange={e => props.onNewDataChange('rating', e.target.value)}
-                    type='text' />
+                <div className={classes.fieldText}>Select Rating</div>
+                <select onChange={e => props.onNewDataChange('rating', e.target.value)}>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option selected value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                </select>
             </div>
             <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
         </div>

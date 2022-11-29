@@ -4,7 +4,8 @@
     flex-direction: row;
 }
 
-.inputBlock input {
+.inputBlock input,
+.inputBlock select {
     margin-left: 5px;
     padding: 2px;
     font-size: 16px;
