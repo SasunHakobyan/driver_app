@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Form from "../Form/Form";
+import ClientForm from "../ClientForm/ClientForm";
 
 const EditClient = () => {
-    const fields = [
-        {fieldName: 'username'},
-        {fieldName: 'password'},
-        {fieldName: 'cardCredentials'},
-    ]
-
     const {clientId} = useParams();
 
     const initialClient = {
@@ -16,6 +10,7 @@ const EditClient = () => {
         password: '',
         cardCredentials: ''
     };
+
     const [client, setClient] = useState(initialClient);
 
     const fetchClient = async () => {
@@ -56,7 +51,7 @@ const EditClient = () => {
         fetchClient();
     }, []);
 
-    return <Form fields={fields} formData={client} saveData={saveData} onNewDataChange={onNewDataChange} />
+    return <ClientForm formData={client} saveData={saveData} onNewDataChange={onNewDataChange} />
 };
 
 export default EditClient;

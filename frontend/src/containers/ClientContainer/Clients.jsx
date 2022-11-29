@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import ClientList from "./ClientList";
+import ClientList from "../../components/ClientList/ClientList";
 
-const ClientListApi = (props) => {
+const Clients = (props) => {
 
     const initialState = {
         clientFormData: {},
@@ -84,4 +84,4 @@ const ClientListApi = (props) => {
     );
 };
 
-export default ClientListApi;
+export default Clients;

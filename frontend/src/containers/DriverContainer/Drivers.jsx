@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import DriverList from "./DriverList";
+import DriverList from "../../components/DriverList/DriverList";
 
-const DriverListApi = (props) => {
+const Drivers = (props) => {
 
     const initialState = {
         driverFormData: {},
@@ -84,4 +84,4 @@ const DriverListApi = (props) => {
     );
 };
 
-export default DriverListApi;
+export default Drivers;

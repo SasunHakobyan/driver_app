@@ -1,8 +1,8 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import ClientListApi from "./components/ClientList/ClientListApi";
-import DriverListApi from "./components/DriverList/DriverListApi";
+import Clients from "./containers/ClientContainer/Clients";
+import Drivers from "./containers/DriverContainer/Drivers";
 import EditClient from "./components/EditClient/EditClient";
 import EditDriver from "./components/EditDriver/EditDriver";
 import {useState} from "react";
@@ -15,9 +15,9 @@ function App() {
                     <NavBar />
                     <div className="app-wrapper-content">
                         <Routes>
-                            <Route path='/drivers' element={<DriverListApi />}/>
+                            <Route path='/drivers' element={<Drivers />}/>
                             <Route path='/editDriver/:driverId' element={<EditDriver />} />
-                            <Route path='/clients' element={<ClientListApi />} />
+                            <Route path='/clients' element={<Clients />} />
                             <Route path='/editClient/:clientId' element={<EditClient />} />
                         </Routes>
                     </div>

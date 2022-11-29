@@ -1,15 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Form from "../Form/Form";
+import DriverForm from "../DriverForm/DriverForm";
 
 const EditDriver = () => {
-    const fields = [
-        {fieldName: 'username'},
-        {fieldName: 'password'},
-        {fieldName: 'tariff'},
-        {fieldName: 'rating'}
-    ];
-
     const {driverId} = useParams();
 
     const initialDriver = {
@@ -59,7 +52,7 @@ const EditDriver = () => {
         fetchDriver();
     }, []);
 
-    return <Form fields={fields} formData={driver} saveData={saveData} onNewDataChange={onNewDataChange} />
+    return <DriverForm formData={driver} saveData={saveData} onNewDataChange={onNewDataChange} />
 };
 
 export default EditDriver;
