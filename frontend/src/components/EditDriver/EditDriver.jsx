@@ -52,7 +52,12 @@ const EditDriver = () => {
         fetchDriver();
     }, []);
 
-    return <DriverForm formData={driver} saveData={saveData} onNewDataChange={onNewDataChange} />
+    return (
+        <div>
+            <h2>Edit Driver</h2>
+            <DriverForm formData={driver} saveData={saveData} onNewDataChange={onNewDataChange} />
+        </div>
+    );
 };
 
 export default EditDriver;

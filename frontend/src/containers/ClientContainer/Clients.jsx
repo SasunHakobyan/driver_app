@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import ClientList from "../../components/ClientList/ClientList";
 
-const Clients = (props) => {
+const initialState = {
+    clientFormData: {},
+    allClients: []
+}
 
-    const initialState = {
-        clientFormData: {},
-        allClients: []
-    }
+const Clients = (props) => {
 
     const [clients, setClients] = useState(initialState);
 

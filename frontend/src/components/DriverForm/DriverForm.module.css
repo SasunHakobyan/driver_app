@@ -19,6 +19,11 @@
     font-family: Calibri, sans-serif;
 }
 
+.selectOption {
+    background-color: white;
+    color: #fcb214;
+}
+
 .btnSuccess {
     padding: 8px;
     background-color: forestgreen;

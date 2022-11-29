@@ -51,7 +51,12 @@ const EditClient = () => {
         fetchClient();
     }, []);
 
-    return <ClientForm formData={client} saveData={saveData} onNewDataChange={onNewDataChange} />
+    return (
+        <div>
+            <h2>Edit Client</h2>
+            <ClientForm formData={client} saveData={saveData} onNewDataChange={onNewDataChange} />
+        </div>
+    );
 };
 
 export default EditClient;

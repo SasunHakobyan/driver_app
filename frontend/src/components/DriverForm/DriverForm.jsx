@@ -19,20 +19,21 @@ const DriverForm = (props) => {
                     type='password' />
             </div>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Enter Tariff</div>
-                <input
-                    value={props.formData.tariff}
-                    onChange={e => props.onNewDataChange('tariff', e.target.value)}
-                    type='text' />
+                <div className={classes.fieldText}>Select Tariff</div>
+                <select onChange={e => props.onNewDataChange('tariff', e.target.value)}>
+                    <option className={classes.selectOption} value='econom'>Econom</option>
+                    <option className={classes.selectOption} value='comfort'>Comfort</option>
+                    <option className={classes.selectOption} value='vip'>VIP</option>
+                </select>
             </div>
             <div className={classes.inputBlock}>
                 <div className={classes.fieldText}>Select Rating</div>
                 <select onChange={e => props.onNewDataChange('rating', e.target.value)}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option selected value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
+                    <option className={classes.selectOption} value='1'>1</option>
+                    <option className={classes.selectOption} value='2'>2</option>
+                    <option className={classes.selectOption} value='3'>3</option>
+                    <option className={classes.selectOption} value='4'>4</option>
+                    <option className={classes.selectOption} value='5'>5</option>
                 </select>
             </div>
             <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
