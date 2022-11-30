@@ -6,9 +6,10 @@ const initialState = {
     allClients: []
 }
 
-const Clients = (props) => {
+const Clients = () => {
 
     const [clients, setClients] = useState(initialState);
+    const [modal, setModal] = useState({show:false, clientId: undefined});
 
     async function fetchClients() {
         try {
@@ -45,7 +46,7 @@ const Clients = (props) => {
         try {
             const response = await fetch('http://localhost:5500/api/clients/addClient', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(newClient)
             });
 
@@ -76,6 +77,8 @@ const Clients = (props) => {
 
     return (
         <ClientList
+            modal={modal}
+            setModal={setModal}
             clients={clients}
             addClient={addClient}
             onNewDataChange={onNewDataChange}

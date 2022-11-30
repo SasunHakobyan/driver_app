@@ -1,0 +1,15 @@
+.modalTitle {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.modalButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.modalButtons button {
+    margin: 0 5px;
+}

@@ -10,7 +10,7 @@ const DriverItem = (props) => {
             <td>{driver.tariff}</td>
             <td>{driver.rating}</td>
             <td>{driver.registerDate}</td>
-            <td><button className={classes.btnDanger} onClick={() => props.deleteDriver(driver._id)}>Delete</button></td>
+            <td><button className={classes.btnDanger} onClick={() => props.setModal({show:true, driverId:props.driver._id})}>Delete</button></td>
         </tr>
     );
 }

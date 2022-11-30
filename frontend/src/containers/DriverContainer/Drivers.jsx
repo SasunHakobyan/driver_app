@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import DriverList from "../../components/DriverList/DriverList";
 
-const Drivers = (props) => {
+const Drivers = () => {
 
     const initialState = {
         driverFormData: {},
@@ -9,6 +9,7 @@ const Drivers = (props) => {
     }
 
     const [drivers, setDrivers] = useState(initialState);
+    const [modal, setModal] = useState({show:false, driverId:undefined});
 
     async function fetchDrivers() {
         try {
@@ -76,6 +77,8 @@ const Drivers = (props) => {
 
     return (
         <DriverList
+            modal={modal}
+            setModal={setModal}
             drivers={drivers}
             addDriver={addDriver}
             onNewDataChange={onNewDataChange}

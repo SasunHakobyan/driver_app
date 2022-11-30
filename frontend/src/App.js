@@ -5,7 +5,6 @@ import Clients from "./containers/ClientContainer/Clients";
 import Drivers from "./containers/DriverContainer/Drivers";
 import EditClient from "./components/EditClient/EditClient";
 import EditDriver from "./components/EditDriver/EditDriver";
-import {useState} from "react";
 
 function App() {
     return (
