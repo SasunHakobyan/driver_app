@@ -1,9 +1,10 @@
 .header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 100%;
+    width: 20%;
     background-color: #fcb214;
 }
 

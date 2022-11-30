@@ -14,25 +14,31 @@ function DriverList(props) {
     return (
         <div className={classes.driversListContainer}>
             {props.modal.show ? deleteDriverModal : ''}
-            <h2>Drivers</h2>
-            <DriverForm formData={props.drivers.driverFormData} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
-            <table className={classes.driversData}>
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Tariff</th>
-                    <th>Rating</th>
-                    <th>Register Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    props.drivers.allDrivers.map(driver => {
-                        return <DriverItem setModal={props.setModal} key={driver._id} driver={driver} deleteDriver={props.deleteDriver}/>
-                    })
-                }
-                </tbody>
-            </table>
+            <div className={classes.listForm}>
+                <DriverForm formData={props.drivers.driverFormData} saveData={props.addDriver} onNewDataChange={props.onNewDataChange} />
+            </div>
+            <div className={classes.list}>
+                <div className={classes.row}>
+                    <h2>Drivers</h2>
+                    <table className={classes.driversData}>
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Tariff</th>
+                            <th>Rating</th>
+                            <th>Register Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            props.drivers.allDrivers.map(driver => {
+                                return <DriverItem setModal={props.setModal} key={driver._id} driver={driver} deleteDriver={props.deleteDriver}/>
+                            })
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }
