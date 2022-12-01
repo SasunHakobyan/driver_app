@@ -21,4 +21,9 @@
 
     opacity: 1 !important;
     z-index: 222 !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

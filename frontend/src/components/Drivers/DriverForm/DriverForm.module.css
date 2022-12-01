@@ -1,34 +1,41 @@
+.form {
+    margin-top: 30px;
+}
+
 .inputBlock {
-    margin: 10px 0;
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+.fieldText {
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: .75rem;
+    line-height: 1.5;
+    color: rgba(0,0,0,.38);
+    display: inline-block;
 }
 
 .inputBlock input,
 .inputBlock select {
-    margin-left: 5px;
-    padding: 2px;
-    font-size: 16px;
-    border-radius: 2px;
+    background-clip: padding-box;
+    background-color: transparent;
+    border-radius: 0;
+    border: solid rgba(0,0,0,.42);
+    border-width: 0 0 1px;
+    box-shadow: none;
+    color: rgba(0,0,0,.87);
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5;
+    width: 100%;
     outline: none;
-    border-color: #fcb214;
-    font-family: Calibri, sans-serif;
-}
-
-.fieldText {
-    font-family: Calibri, sans-serif;
-}
-
-.selectOption {
-    background-color: white;
-    color: #fcb214;
 }
 
 .btnSuccess {
-    padding: 8px;
-    background-color: forestgreen;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
     color: white;
+    background-color: #f3a703;
+    border-radius: 4px;
     cursor: pointer;
 }

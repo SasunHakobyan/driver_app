@@ -6,3 +6,15 @@
     color: white;
     cursor: pointer;
 }
+
+.clientRow {
+    margin-bottom: 10px;
+}
+
+.clientRow td {
+    border: none;
+    padding: 20px 20px;
+    border-bottom: 1px solid #fdcb60;
+    font-size: 18px;
+    text-align: center;
+}

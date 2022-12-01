@@ -1,34 +1,39 @@
 import classes from "./ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
-import ClientForm from "../ClientForm/ClientForm";
 import DeleteClientModal from "../../Modal/DeleteClientModal/DeleteClientModal";
+import {NavLink} from "react-router-dom";
 
 function ClientList(props) {
-    const deleteClientModal =
-        <DeleteClientModal
+    let deleteClientModal;
+
+    if (props.modal.show) {
+        deleteClientModal = <DeleteClientModal
             setModal={props.setModal}
             modal={props.modal}
             deleteClient={props.deleteClient}
         />
+    } else {
+        deleteClientModal = '';
+    }
 
     return (
-        <div className={classes.clientsListContainer}>
-            {props.modal.show ? deleteClientModal : ''}
-            <h2>Clients</h2>
-            <ClientForm formData={props.clients.clientFormData} saveData={props.addClient}
-                        onNewDataChange={props.onNewDataChange}/>
-            <table className={classes.clientsData}>
-                <thead>
-                <tr>
+        <div className={classes.listContainer}>
+            {deleteClientModal}
+            <NavLink to='/addClient' className={classes.addButton}>Add Client</NavLink>
+            <table className={classes.clientsTable}>
+                <thead className={classes.tableHeader}>
+                <tr className={classes.headingRow}>
+                    <th>#</th>
                     <th>Username</th>
                     <th>Card Credentials</th>
                     <th>Register Date</th>
+                    <th>Remove Client</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    props.clients.allClients.map(client => {
-                        return <ClientItem setModal={props.setModal} setClient={props.setModal} key={client._id}
+                    props.clients.map((client,index) => {
+                        return <ClientItem index={index+1} setModal={props.setModal} setClient={props.setModal} key={client._id}
                                            client={client}/>
                     })
                 }

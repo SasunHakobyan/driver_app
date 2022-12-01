@@ -1,17 +1,35 @@
-.clientsListContainer {
-    width: fit-content;
+.listContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
 }
 
-.clientsData {
-
+.addButton {
+    height: fit-content;
+    padding: 20px 30px;
+    margin: 0 10px;
+    color: white;
+    background-color: #fcb214;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.clientsData td,
-.clientsData th {
-    font-size: 20px;
-    padding: 10px;
-    width: 100px;
+.addButton:hover {
+    background-color: #f3a703;
+}
+
+.clientsTable {
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    background-color: #fcb214;
+}
+
+.headingRow th {
+    border: none;
+    padding: 20px 30px;
+    font-size: 16px;
+    color: #fff;
+    vertical-align: bottom;
 }

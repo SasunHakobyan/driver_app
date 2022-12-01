@@ -3,7 +3,7 @@ import classes from './ClientForm.module.css';
 
 const ClientForm = (props) => {
     return (
-        <div>
+        <div className={classes.form}>
             <div className={classes.inputBlock}>
                 <div className={classes.fieldText}>Enter username</div>
                 <input

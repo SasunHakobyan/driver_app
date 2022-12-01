@@ -5,10 +5,10 @@ import Modal from "../Modal";
 const DeleteDriverModal = (props) => {
     return (
         <Modal>
-            <h3 className={classes.modalTitle}>Do you want to delete driver</h3>
+            <h3 className={classes.modalTitle}>Do you want to delete driver?</h3>
             <div className={classes.modalButtons}>
                 <button onClick={() => props.setModal({show:false, driverId:undefined})}>Cancel</button>
-                <button onClick={() => {
+                <button className={classes.btnDanger} onClick={() => {
                     props.deleteDriver(props.modal.driverId);
                     props.setModal({show:false, driverId:undefined});
                 }}>Delete</button>

@@ -1,6 +1,5 @@
 .modalTitle {
     text-align: center;
-    margin-top: 10px;
 }
 
 .modalButtons {
@@ -12,4 +11,12 @@
 
 .modalButtons button {
     margin: 0 5px;
+    padding: 10px;
+    border: none;
+    background-color: #f3a703;
+    color: white;
+}
+
+.btnDanger {
+    background-color: #ff1b1b !important;
 }

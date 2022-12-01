@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
 const EditDriverContainer = () => {
+    const navigate = useNavigate();
     const {driverId} = useParams();
     const [driverFormData, setDriverFormData] = useState({});
 
@@ -12,10 +13,10 @@ const EditDriverContainer = () => {
 
     const fetchDriver = async () => {
         const response = await fetch(`http://localhost:5500/api/drivers/${driverId}`);
-        const driverData = await response.json();
+        const responseData = await response.json();
+        const {username, password, tariff, rating} = responseData.data.driver;
 
-        const driver = driverData.data.driver;
-        setDriverFormData({...driver});
+        setDriverFormData({username, password, tariff, rating});
     }
 
     const onNewDataChange = (fieldName, value) => {
@@ -39,10 +40,10 @@ const EditDriverContainer = () => {
             body: JSON.stringify(reqBody)
         });
 
-        const {responseCode} = await response.json();
+        const responseData = await response.json();
 
-        if (responseCode === 0) {
-            console.log('DONE');
+        if (responseData.responseCode === 0) {
+            navigate('/drivers');
         }
     }
 

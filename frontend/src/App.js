@@ -2,11 +2,12 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
-import Clients from "./containers/ClientContainer/Clients";
+import ClientsListContainer from "./containers/ClientContainer/ClientsListContainer";
 import DriversListContainer from "./containers/DriverContainer/DriversListContainer";
-import EditClient from "./components/Clients/EditClient/EditClient";
+import EditClientContainer from "./containers/ClientContainer/EditClientContainer";
 import EditDriverContainer from "./containers/DriverContainer/EditDriverContainer";
 import AddDriverContainer from "./containers/DriverContainer/AddDriverContainer";
+import AddClientContainer from "./containers/ClientContainer/AddClientContainer";
 
 function App() {
     return (
@@ -19,9 +20,10 @@ function App() {
                             <Route path='/drivers' element={<DriversListContainer />} />
                             <Route path='/addDriver' element={<AddDriverContainer/>} />
                             <Route path='/editDriver/:driverId' element={<EditDriverContainer />} />
-
-                            <Route path='/clients' element={<Clients />} />
-                            <Route path='/editClient/:clientId' element={<EditClient />} />
+s
+                            <Route path='/clients' element={<ClientsListContainer />} />
+                            <Route path='/addClient' element={<AddClientContainer />} />
+                            <Route path='/editClient/:clientId' element={<EditClientContainer />} />
                         </Routes>
                     </div>
                 </div>

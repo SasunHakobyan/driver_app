@@ -1,25 +1,25 @@
 import React from 'react';
-import classes from './DriverForm.module.css'
+import classes from './DriverForm.module.css';
 
 const DriverForm = (props) => {
     return (
-        <div>
+        <form className={classes.form}>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Enter username</div>
+                <label className={classes.fieldText}>Enter username</label>
                 <input
                     value={props.formData.username}
                     onChange={e => props.onNewDataChange('username', e.target.value)}
                     type='text' />
             </div>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Enter password</div>
+                <label className={classes.fieldText}>Enter password</label>
                 <input
                     value={props.formData.password}
                     onChange={e => props.onNewDataChange('password', e.target.value)}
                     type='password' />
             </div>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Select Tariff</div>
+                <label className={classes.fieldText}>Select Tariff</label>
                 <select onChange={e => props.onNewDataChange('tariff', e.target.value)}>
                     <option className={classes.selectOption} value='econom'>Econom</option>
                     <option className={classes.selectOption} value='comfort'>Comfort</option>
@@ -27,7 +27,7 @@ const DriverForm = (props) => {
                 </select>
             </div>
             <div className={classes.inputBlock}>
-                <div className={classes.fieldText}>Select Rating</div>
+                <label className={classes.fieldText}>Select Rating</label>
                 <select onChange={e => props.onNewDataChange('rating', e.target.value)}>
                     <option className={classes.selectOption} value='1'>1</option>
                     <option className={classes.selectOption} value='2'>2</option>
@@ -37,7 +37,7 @@ const DriverForm = (props) => {
                 </select>
             </div>
             <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
-        </div>
+        </form>
     );
 };
 
