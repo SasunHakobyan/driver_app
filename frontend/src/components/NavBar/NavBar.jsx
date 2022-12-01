@@ -2,7 +2,8 @@ import React from 'react';
 import classes from './NavBar.module.css';
 import {NavLink} from "react-router-dom";
 
-const NavBar = (props) => {
+const NavBar = () => {
+
     const activeStyle = ({isActive}) => {
         const activeStyle = {
             borderBottom: '2px solid antiquewhite'

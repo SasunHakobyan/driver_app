@@ -1,38 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import DriverForm from "../DriverForm/DriverForm";
+import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
-const EditDriver = () => {
+const EditDriverContainer = () => {
     const {driverId} = useParams();
+    const [driverFormData, setDriverFormData] = useState({});
 
-    const initialDriver = {
-        username: '',
-        password: '',
-        tariff: '',
-        rating: ''
-    };
-
-    const [driver, setDriver] = useState(initialDriver);
+    useEffect(() => {
+        fetchDriver();
+    }, []);
 
     const fetchDriver = async () => {
         const response = await fetch(`http://localhost:5500/api/drivers/${driverId}`);
         const driverData = await response.json();
-        const {username, password, tariff, rating} = driverData.data.driver;
 
-        setDriver({username, password, tariff, rating});
+        const driver = driverData.data.driver;
+        setDriverFormData({...driver});
     }
 
     const onNewDataChange = (fieldName, value) => {
-        const newDriver = {...driver};
-        newDriver[fieldName] = value;
-
-        setDriver(newDriver);
+        setDriverFormData((prevState) => {
+            return {
+                ...prevState,
+                [fieldName]: value
+            }
+        });
     }
 
     const saveData = async () => {
         const reqBody = {
             driverId: driverId,
-            updateData: driver
+            updateData: driverFormData
         };
 
         const response = await fetch('http://localhost:5500/api/drivers/updateDriver', {
@@ -48,16 +46,12 @@ const EditDriver = () => {
         }
     }
 
-    useEffect(() => {
-        fetchDriver();
-    }, []);
-
     return (
         <div>
             <h2>Edit Driver</h2>
-            <DriverForm formData={driver} saveData={saveData} onNewDataChange={onNewDataChange} />
+            <DriverForm formData={driverFormData} saveData={saveData} onNewDataChange={onNewDataChange} />
         </div>
     );
 };
 
-export default EditDriver;
+export default EditDriverContainer;

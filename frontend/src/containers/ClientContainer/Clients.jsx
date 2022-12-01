@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import ClientList from "../../components/ClientList/ClientList";
+import ClientList from "../../components/Clients/ClientList/ClientList";
 
 const initialState = {
     clientFormData: {},

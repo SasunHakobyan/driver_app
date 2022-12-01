@@ -1,0 +1,20 @@
+.btnDanger {
+    padding: 8px;
+    background-color: #ff1b1b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.driverRow {
+    margin-bottom: 10px;
+}
+
+.driverRow td {
+    border: none;
+    padding: 20px 20px;
+    border-bottom: 1px solid #fdcb60;
+    font-size: 18px;
+    text-align: center;
+}

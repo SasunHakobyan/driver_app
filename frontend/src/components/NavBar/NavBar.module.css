@@ -1,16 +1,17 @@
 .header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 100%;
-    width: 20%;
+    width: 10%;
     background-color: #fcb214;
+    padding: 10px 0;
 }
 
 .navItem {
     font-size: 20px;
-    margin: 0 5px;
+    margin: 5px 0;
 }
 
 .navLink {

@@ -7,13 +7,12 @@
 .app-wrapper {
     display: flex;
     height: 100vh;
-    background-color: antiquewhite;
+    background-color: cornsilk;
 }
 
 .app-wrapper-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     padding: 10px;

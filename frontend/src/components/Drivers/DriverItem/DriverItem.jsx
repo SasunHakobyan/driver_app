@@ -5,12 +5,13 @@ const DriverItem = (props) => {
     const driver = props.driver;
 
     return (
-        <tr className='driver-row'>
+        <tr className={classes.driverRow}>
+            <td>{props.index}</td>
             <td><NavLink to={`/editDriver/${driver._id}`}>{driver.username}</NavLink></td>
             <td>{driver.tariff}</td>
             <td>{driver.rating}</td>
             <td>{driver.registerDate}</td>
-            <td><button className={classes.btnDanger} onClick={() => props.setModal({show:true, driverId:props.driver._id})}>Delete</button></td>
+            <td><button className={classes.btnDanger} onClick={() => props.setModal({show:true, driverId:driver._id})}>Delete</button></td>
         </tr>
     );
 }

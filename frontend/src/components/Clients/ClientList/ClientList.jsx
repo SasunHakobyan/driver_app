@@ -1,7 +1,7 @@
-import classes from "../ClientList/ClientsList.module.css";
+import classes from "./ClientsList.module.css";
 import ClientItem from "../ClientItem/ClientItem";
 import ClientForm from "../ClientForm/ClientForm";
-import DeleteClientModal from "../Modal/DeleteClientModal/DeleteClientModal";
+import DeleteClientModal from "../../Modal/DeleteClientModal/DeleteClientModal";
 
 function ClientList(props) {
     const deleteClientModal =
