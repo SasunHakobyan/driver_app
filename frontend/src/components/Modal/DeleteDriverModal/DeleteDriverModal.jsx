@@ -4,7 +4,7 @@ import Modal from "../Modal";
 
 const DeleteDriverModal = (props) => {
     return (
-        <Modal>
+        <Modal setModal={props.setModal}>
             <h3 className={classes.modalTitle}>Do you want to delete driver?</h3>
             <div className={classes.modalButtons}>
                 <button onClick={() => props.setModal({show:false, driverId:undefined})}>Cancel</button>

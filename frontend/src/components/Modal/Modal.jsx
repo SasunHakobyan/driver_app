@@ -5,7 +5,7 @@ import classes from './Modal.module.css';
 const Modal = (props) => {
     return (
         <div>
-            <div className={classes.modal}></div>
+            <div onClick={() => props.setModal({show:false, driverId: undefined})} className={classes.modal}></div>
             <div className={classes.modalContent}>
                 {props.children}
             </div>

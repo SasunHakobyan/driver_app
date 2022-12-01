@@ -43,7 +43,8 @@ const EditDriverContainer = () => {
         const responseData = await response.json();
 
         if (responseData.responseCode === 0) {
-            navigate('/drivers');
+            console.log('in if');
+            // navigate('/drivers');
         }
     }
 
