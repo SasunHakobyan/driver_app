@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './DeleteDriverModal.module.css'
 import Modal from "../Modal";
+import classes from './DeleteDriverModal.module.css'
 
 const DeleteDriverModal = (props) => {
     return (
         <Modal setModal={props.setModal}>
-            <h3 className={classes.modalTitle}>Do you want to delete driver?</h3>
+            <header>Do you want to delete Driver?</header>
             <div className={classes.modalButtons}>
                 <button onClick={() => props.setModal({show:false, driverId:undefined})}>Cancel</button>
                 <button className={classes.btnDanger} onClick={() => {

@@ -21,9 +21,16 @@
 
     opacity: 1 !important;
     z-index: 222 !important;
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.modalContent header {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    background-color: #f3a703;
+    color: white;
+    font-size: 18px;
 }

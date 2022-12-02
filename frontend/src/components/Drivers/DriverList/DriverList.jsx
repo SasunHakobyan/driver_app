@@ -36,15 +36,22 @@ function DriverList(props) {
                     <tbody>
                     {
                         props.drivers.map((driver, index) => {
-                            return <DriverItem index={index+1} setModal={props.setModal} key={driver._id} driver={driver} deleteDriver={props.deleteDriver}/>
+                            const itemNumber = (index + 1) + ((props.paginationData.currentPage - 1)
+                                * props.paginationData.pageLimit);
+
+                            return <DriverItem itemNumber={itemNumber}
+                                               setModal={props.setModal}
+                                               key={driver._id}
+                                               driver={driver}
+                                               deleteDriver={props.deleteDriver}/>
                         })
                     }
                     </tbody>
                 </table>
                 <select onChange={(e) => props.changeLimit(e.target.value)} className={classes.limitDropdown}>
                     <option value='5'>Limit - 5</option>
+                    <option value='7'>Limit - 7</option>
                     <option value='10'>Limit - 10</option>
-                    <option value='15'>Limit - 15</option>
                 </select>
             </div>
             <Pagination {...props.paginationData}/>
