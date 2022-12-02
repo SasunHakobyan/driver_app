@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import DriverList from "../../components/Drivers/DriverList/DriverList";
 
-const pageLimit = 5;
-
 const DriversListContainer = () => {
     const [drivers, setDrivers] = useState([]);
     const [deleteModal, setDeleteModal] = useState({show:false, driverId:undefined});
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [pageLimit, setPageLimit] = useState(5);
     const [driversCount, setDriversCount] = useState(0);
 
     useEffect(() => {
         fetchDrivers();
-    }, [currentPage]);
+    }, [currentPage, pageLimit]);
 
     async function fetchDrivers() {
         try {
@@ -46,8 +45,13 @@ const DriversListContainer = () => {
         }
     }
 
+    const onLimitChange = (selectLimit) => {
+        setPageLimit(selectLimit);
+    }
+
     return (
         <DriverList
+            changeLimit={onLimitChange}
             paginationData={{currentPage, setCurrentPage, driversCount, pageLimit}}
             modal={deleteModal}
             setModal={setDeleteModal}

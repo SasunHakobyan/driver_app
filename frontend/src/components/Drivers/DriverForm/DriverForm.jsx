@@ -21,6 +21,7 @@ const DriverForm = (props) => {
             <div className={classes.inputBlock}>
                 <label className={classes.fieldText}>Select Tariff</label>
                 <select onChange={e => props.onNewDataChange('tariff', e.target.value)}>
+                    <option selected disabled>Select Tariff</option>
                     <option className={classes.selectOption} value='econom'>Econom</option>
                     <option className={classes.selectOption} value='comfort'>Comfort</option>
                     <option className={classes.selectOption} value='vip'>VIP</option>
@@ -29,6 +30,7 @@ const DriverForm = (props) => {
             <div className={classes.inputBlock}>
                 <label className={classes.fieldText}>Select Rating</label>
                 <select onChange={e => props.onNewDataChange('rating', e.target.value)}>
+                    <option selected disabled>Select Rating</option>
                     <option className={classes.selectOption} value='1'>1</option>
                     <option className={classes.selectOption} value='2'>2</option>
                     <option className={classes.selectOption} value='3'>3</option>

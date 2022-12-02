@@ -41,6 +41,11 @@ function DriverList(props) {
                     }
                     </tbody>
                 </table>
+                <select onChange={(e) => props.changeLimit(e.target.value)} className={classes.limitDropdown}>
+                    <option value='5'>Limit - 5</option>
+                    <option value='10'>Limit - 10</option>
+                    <option value='15'>Limit - 15</option>
+                </select>
             </div>
             <Pagination {...props.paginationData}/>
         </div>
