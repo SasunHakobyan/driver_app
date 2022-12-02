@@ -3,7 +3,7 @@ import classes from './DriverForm.module.css';
 
 const DriverForm = (props) => {
     return (
-        <form className={classes.form}>
+        <div className={classes.form}>
             <div className={classes.inputBlock}>
                 <label className={classes.fieldText}>Enter username</label>
                 <input
@@ -37,7 +37,7 @@ const DriverForm = (props) => {
                 </select>
             </div>
             <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
-        </form>
+        </div>
     );
 };
 

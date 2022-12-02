@@ -2,10 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
+const initialDriver = {
+    username: '',
+    password: '',
+    tariff: '',
+    rating: ''
+}
+
 const EditDriverContainer = () => {
     const navigate = useNavigate();
     const {driverId} = useParams();
-    const [driverFormData, setDriverFormData] = useState({});
+    const [driverFormData, setDriverFormData] = useState(initialDriver);
 
     useEffect(() => {
         fetchDriver();
@@ -43,8 +50,7 @@ const EditDriverContainer = () => {
         const responseData = await response.json();
 
         if (responseData.responseCode === 0) {
-            console.log('in if');
-            // navigate('/drivers');
+            navigate('/drivers');
         }
     }
 

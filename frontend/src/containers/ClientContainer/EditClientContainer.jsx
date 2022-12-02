@@ -2,10 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import ClientForm from "../../components/Clients/ClientForm/ClientForm";
 
+const initialClient = {
+    username: '',
+    cardCredentials: '',
+    password: ''
+};
+
 const EditClientContainer = () => {
     const navigate = useNavigate();
     const {clientId} = useParams();
-    const [clientFormData, setClientFormData] = useState({});
+    const [clientFormData, setClientFormData] = useState(initialClient);
 
     useEffect(() => {
         fetchClient();
