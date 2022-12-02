@@ -47,6 +47,7 @@ const DriversListContainer = () => {
 
     const onLimitChange = (selectLimit) => {
         setPageLimit(selectLimit);
+        setCurrentPage(1);
     }
 
     return (

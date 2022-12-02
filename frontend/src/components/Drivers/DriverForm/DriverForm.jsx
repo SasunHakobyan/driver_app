@@ -22,20 +22,20 @@ const DriverForm = (props) => {
                 <label className={classes.fieldText}>Select Tariff</label>
                 <select onChange={e => props.onNewDataChange('tariff', e.target.value)}>
                     <option selected disabled>Select Tariff</option>
-                    <option className={classes.selectOption} value='econom'>Econom</option>
-                    <option className={classes.selectOption} value='comfort'>Comfort</option>
-                    <option className={classes.selectOption} value='vip'>VIP</option>
+                    <option value='econom'>Econom</option>
+                    <option value='comfort'>Comfort</option>
+                    <option value='vip'>VIP</option>
                 </select>
             </div>
             <div className={classes.inputBlock}>
                 <label className={classes.fieldText}>Select Rating</label>
                 <select onChange={e => props.onNewDataChange('rating', e.target.value)}>
                     <option selected disabled>Select Rating</option>
-                    <option className={classes.selectOption} value='1'>1</option>
-                    <option className={classes.selectOption} value='2'>2</option>
-                    <option className={classes.selectOption} value='3'>3</option>
-                    <option className={classes.selectOption} value='4'>4</option>
-                    <option className={classes.selectOption} value='5'>5</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
                 </select>
             </div>
             <button className={classes.btnSuccess} onClick={props.saveData}>Save</button>
