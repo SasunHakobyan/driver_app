@@ -27,9 +27,12 @@ router.get('/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const drivers = await driverController.getDrivers();
+        const driversData = await driverController.getDrivers({limit: req.query.limit, pageNumber: req.query.pageNumber});
+        const drivers = driversData.drivers;
+
         res.json({
             responseCode: 0,
+            driversCount: driversData.driversCount,
             data: {drivers}
         });
     } catch (err) {
@@ -50,8 +53,6 @@ router.post('/addDriver', async (req, res) => {
         res.json(errorResponse);
     }
 });
-
-
 
 router.post('/updateDriver', async(req, res) => {
     try {
