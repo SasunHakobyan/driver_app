@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
-import DriverForm from "../../components/Drivers/DriverForm/DriverForm"
+import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
 const initialDriver = {
     username: '',
@@ -21,9 +21,13 @@ const EditDriverContainer = () => {
     const fetchDriver = async () => {
         const response = await fetch(`http://localhost:5500/api/drivers/${driverId}`);
         const responseData = await response.json();
-        const {username, password, tariff, rating} = responseData.data.driver;
 
-        setDriverFormData({username, password, tariff, rating});
+        if (responseData.responseCode === 404) {
+            navigate('/notfound');
+        } else if (responseData.responseCode === 200) {
+            const {username, password, tariff, rating} = responseData.data.driver;
+            setDriverFormData({username, password, tariff, rating});
+        }
     }
 
     const onNewDataChange = (fieldName, value) => {
@@ -42,15 +46,17 @@ const EditDriverContainer = () => {
         };
 
         const response = await fetch('http://localhost:5500/api/drivers/updateDriver', {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reqBody)
         });
 
         const responseData = await response.json();
 
-        if (responseData.responseCode === 0) {
+        if (responseData.responseCode === 200) {
             navigate('/drivers');
+        } else if (responseData.responseCode === 404) {
+            navigate('/notfound');
         }
     }
 

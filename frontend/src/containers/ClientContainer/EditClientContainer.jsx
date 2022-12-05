@@ -20,9 +20,13 @@ const EditClientContainer = () => {
     const fetchClient = async () => {
         const response = await fetch(`http://localhost:5500/api/clients/${clientId}`);
         const clientData = await response.json();
-        const {username, password, cardCredentials} = clientData.data.client;
 
-        setClientFormData({username, password, cardCredentials});
+        if (clientData.responseCode === 404) {
+            navigate('/notfound');
+        } else if (clientData.responseCode === 200) {
+            const {username, password, cardCredentials} = clientData.data.client;
+            setClientFormData({username, password, cardCredentials});
+        }
     }
 
     const onNewDataChange = (fieldName, value) => {
@@ -41,15 +45,17 @@ const EditClientContainer = () => {
         }
 
         const response = await fetch('http://localhost:5500/api/clients/updateClient', {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reqBody)
         });
 
         const responseData = await response.json();
 
-        if (responseData.responseCode === 0) {
+        if (responseData.responseCode === 200) {
             navigate('/clients');
+        } else if (responseData.responseCode === 404) {
+            navigate('/notfound');
         }
     }
 

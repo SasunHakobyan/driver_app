@@ -8,6 +8,7 @@ import EditClientContainer from "./containers/ClientContainer/EditClientContaine
 import EditDriverContainer from "./containers/DriverContainer/EditDriverContainer";
 import AddDriverContainer from "./containers/DriverContainer/AddDriverContainer";
 import AddClientContainer from "./containers/ClientContainer/AddClientContainer";
+import NotFound from "./components/Error/NotFound";
 
 function App() {
     return (
@@ -24,6 +25,8 @@ s
                             <Route path='/clients' element={<ClientsListContainer />} />
                             <Route path='/addClient' element={<AddClientContainer />} />
                             <Route path='/editClient/:clientId' element={<EditClientContainer />} />
+
+                            <Route path='/notfound' element={<NotFound/>} />
                         </Routes>
                     </div>
                 </div>

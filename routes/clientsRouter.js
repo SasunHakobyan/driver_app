@@ -3,25 +3,25 @@ const Router = require('express').Router;
 const ClientController = require("../controllers/ClientController");
 const {mongoClient} = require("../db/index");
 const {ObjectId} = require("mongodb");
+const {serverErrorResponse, notFoundErrorResponse} = require("../errors/error");
 
 const clientController = new ClientController(mongoClient);
 const router = new Router();
 
-const errorResponse = {
-    responseCode: 1,
-    errorMessage: 'Something went wrong',
-    data: null
-};
-
 router.get('/:id', async (req, res) => {
     try {
         const client = await clientController.getClient({_id: ObjectId(req.params.id)});
-        res.json({
-            responseCode: 0,
-            data: {client}
-        });
+
+        if (!client) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {client}
+            });
+        }
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 })
 
@@ -29,12 +29,12 @@ router.get('/', async (req, res) => {
     try {
         const clients = await clientController.getClients();
         res.json({
-            responseCode: 0,
+            responseCode: 200,
             data: {clients}
         });
 
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 });
 
@@ -44,25 +44,29 @@ router.post('/addClient', async (req,res) => {
         const insertResult = await clientController.insertUser({username, password, cardCredentials});
 
         res.json({
-            responseCode: 0,
+            responseCode: 200,
             data: {insertResult}
         });
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 });
 
-router.post('/updateClient', async (req, res) => {
+router.put('/updateClient', async (req, res) => {
     try {
         const updateData = req.body.updateData;
         const updateResult = await clientController.updateClient(req.body.clientId, updateData);
 
-        res.json({
-            responseCode: 0,
-            data: {updateResult}
-        });
+        if (updateResult.matchedCount === 0) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {updateResult}
+            });
+        }
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 })
 
@@ -71,12 +75,16 @@ router.delete('/deleteClient', async (req,res) => {
         const clientId = req.body.clientId;
         const deleteResult = await clientController.deleteClient(clientId);
 
-        res.json({
-            responseCode: 0,
-            data: {deleteResult}
-        });
+        if (deleteResult.deletedCount === 0) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {deleteResult}
+            });
+        }
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 });
 

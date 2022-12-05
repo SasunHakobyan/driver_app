@@ -3,27 +3,27 @@ const Router = require('express').Router;
 const DriverController = require('../controllers/DriverController');
 const {mongoClient} = require('../db/index');
 const {ObjectId} = require("mongodb");
+const {notFoundErrorResponse, serverErrorResponse} = require("../errors/error");
 
 const driverController = new DriverController(mongoClient);
 const router = new Router();
 
-const errorResponse = {
-    responseCode: 1,
-    errorMessage: 'Something went wrong',
-    data: null
-};
-
 router.get('/:id', async (req, res) => {
     try {
         const driver = await driverController.getDriver({_id: ObjectId(req.params.id)});
-        res.json({
-            responseCode: 0,
-            data: {driver}
-        });
+
+        if (!driver) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {driver}
+            });
+        }
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
-})
+});
 
 router.get('/', async (req, res) => {
     try {
@@ -31,14 +31,14 @@ router.get('/', async (req, res) => {
         const drivers = driversData.drivers;
 
         res.json({
-            responseCode: 0,
+            responseCode: 200,
             driversCount: driversData.driversCount,
             data: {drivers}
         });
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
-})
+});
 
 router.post('/addDriver', async (req, res) => {
     try {
@@ -46,40 +46,50 @@ router.post('/addDriver', async (req, res) => {
         const insertResult = await driverController.insertDriver({username, password, tariff, rating});
 
         res.json({
-            responseCode: 0,
+            responseCode: 200,
             data: {insertResult}
         });
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
     }
 });
 
-router.post('/updateDriver', async(req, res) => {
+router.put('/updateDriver', async(req, res) => {
     try {
         const updateData = req.body.updateData;
         const updateResult = await driverController.updateDriver(req.body.driverId, updateData);
 
-        res.json({
-            responseCode: 0,
-            data: {updateResult}
-        });
+        if (updateResult.matchedCount === 0) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {updateResult}
+            });
+        }
 
     } catch (err) {
-        res.json(errorResponse);
+        console.log(err);
+        res.json(serverErrorResponse);
     }
-})
+});
 
 router.delete('/deleteDriver', async (req, res) => {
     try {
         const driverId = req.body.driverId;
         const deleteResult = await driverController.deleteDriver(driverId);
 
-        res.json({
-            responseCode: 0,
-            data: {deleteResult}
-        });
+        if (deleteResult.deletedCount === 0) {
+            res.json(notFoundErrorResponse);
+        } else {
+            res.json({
+                responseCode: 200,
+                data: {deleteResult}
+            });
+        }
     } catch (err) {
-        res.json(errorResponse);
+        res.json(serverErrorResponse);
+        console.log(err);
     }
 });
 

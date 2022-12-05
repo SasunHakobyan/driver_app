@@ -25,7 +25,7 @@ const AddClientContainer = (props) => {
 
             const responseData = await response.json();
 
-            if (responseData.responseCode === 0) {
+            if (responseData.responseCode === 200) {
                 navigate('/clients');
             }
 
