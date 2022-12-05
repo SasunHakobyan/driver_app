@@ -9,7 +9,7 @@ const Pagination = (props) => {
         props.setCurrentPage(pageNumber);
     }
 
-    const pagItemsCount = Math.ceil(Number(props.driversCount) / Number(props.pageLimit));
+    const pagItemsCount = Math.ceil(Number(props.itemsCount) / Number(props.pageLimit));
     const pagItems = [];
 
     for (let i = 0; i < pagItemsCount; i++) {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import ClientForm from "../../components/Clients/ClientForm/ClientForm";
 
@@ -17,7 +17,7 @@ const EditClientContainer = () => {
         fetchClient();
     }, []);
 
-    const fetchClient = async () => {
+    const fetchClient = useCallback(async () => {
         const response = await fetch(`http://localhost:5500/api/clients/${clientId}`);
         const clientData = await response.json();
 
@@ -27,7 +27,8 @@ const EditClientContainer = () => {
             const {username, password, cardCredentials} = clientData.data.client;
             setClientFormData({username, password, cardCredentials});
         }
-    }
+
+    }, [clientId]);
 
     const onNewDataChange = (fieldName, value) => {
         setClientFormData((prevState) => {
@@ -38,7 +39,7 @@ const EditClientContainer = () => {
         });
     }
 
-    const saveData = async () => {
+    const saveData = useCallback(async () => {
         const reqBody = {
             clientId: clientId,
             updateData: clientFormData
@@ -57,7 +58,8 @@ const EditClientContainer = () => {
         } else if (responseData.responseCode === 404) {
             navigate('/notfound');
         }
-    }
+
+    }, [clientId, clientFormData]);
 
     return (
         <div>

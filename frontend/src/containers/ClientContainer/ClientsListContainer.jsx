@@ -1,28 +1,37 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import ClientList from "../../components/Clients/ClientList/ClientList";
 
 const ClientsListContainer = () => {
     const [clients, setClients] = useState([]);
-    const [modal, setModal] = useState({show:false, clientId: undefined});
+    const [deleteModal, setDeleteModal] = useState({show:false, clientId: undefined});
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageLimit, setPageLimit] = useState(5);
+    const [clientsCount, setClientsCount] = useState(0);
 
     useEffect(() => {
         fetchClients();
-    }, []);
+    }, [currentPage, pageLimit]);
 
-    async function fetchClients() {
+    const fetchClients = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5500/api/clients');
-            const clientData = await response.json();
+            const response = await fetch(`http://localhost:5500/api/clients?limit=${pageLimit}&pageNumber=${currentPage}`);
+            const clientsData = await response.json();
+
+            setClientsCount((prevState) => {
+                return clientsData.clientsCount;
+            });
 
             setClients((prevState) => {
-                return [...clientData.data.clients];
+                return [...clientsData.data.clients];
             });
+
         } catch (err) {
             console.log(err);
         }
-    }
+    }, [pageLimit, currentPage]);
 
-    const deleteClient = async (clientId) => {
+    const deleteClient = useCallback(async (clientId) => {
         try {
             const response = await fetch('http://localhost:5500/api/clients/deleteClient', {
                 method: 'DELETE',
@@ -34,12 +43,19 @@ const ClientsListContainer = () => {
         } catch (err) {
             console.log(err);
         }
+    }, [])
+
+    const onLimitChange = (selectLimit) => {
+        setPageLimit(selectLimit);
+        setCurrentPage(1);
     }
 
     return (
         <ClientList
-            modal={modal}
-            setModal={setModal}
+            changeLimit={onLimitChange}
+            paginationData={{currentPage, setCurrentPage, itemsCount: clientsCount, pageLimit}}
+            modal={deleteModal}
+            setModal={setDeleteModal}
             clients={clients}
             deleteClient={deleteClient}
         />

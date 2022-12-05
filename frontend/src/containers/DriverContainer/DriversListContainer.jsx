@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import DriverList from "../../components/Drivers/DriverList/DriverList";
 
 const DriversListContainer = () => {
@@ -13,7 +13,7 @@ const DriversListContainer = () => {
         fetchDrivers();
     }, [currentPage, pageLimit]);
 
-    async function fetchDrivers() {
+    const fetchDrivers = useCallback(async () => {
         try {
             const response = await fetch(`http://localhost:5500/api/drivers?limit=${pageLimit}&pageNumber=${currentPage}`);
             const driversData = await response.json();
@@ -29,9 +29,9 @@ const DriversListContainer = () => {
         } catch (err) {
             console.log(err);
         }
-    }
+    }, [pageLimit, currentPage]);
 
-    const deleteDriver = async (driverId) => {
+    const deleteDriver =  useCallback(async (driverId) => {
         try {
             const response = await fetch('http://localhost:5500/api/drivers/deleteDriver', {
                 method: 'DELETE',
@@ -43,7 +43,7 @@ const DriversListContainer = () => {
         } catch (err) {
             console.log(err);
         }
-    }
+    }, []);
 
     const onLimitChange = (selectLimit) => {
         setPageLimit(selectLimit);
@@ -53,7 +53,7 @@ const DriversListContainer = () => {
     return (
         <DriverList
             changeLimit={onLimitChange}
-            paginationData={{currentPage, setCurrentPage, driversCount, pageLimit}}
+            paginationData={{currentPage, setCurrentPage, itemsCount: driversCount, pageLimit}}
             modal={deleteModal}
             setModal={setDeleteModal}
             drivers={drivers}

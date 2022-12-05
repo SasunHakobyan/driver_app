@@ -5,11 +5,19 @@ class ClientController {
         this.mongoClient = mongoClient;
     }
 
-    getClients() {
+    async getClients({limit, pageNumber}) {
         try {
             const driverDb = this.mongoClient.db('driver_app');
             const clientCollection = driverDb.collection('client');
-            return clientCollection.find({}).toArray();
+
+            const clientsCount = await clientCollection.count({});
+
+            const dataLimit = Number(limit);
+            const skip = (pageNumber - 1) * dataLimit;
+
+            const clients = await clientCollection.find({}).limit(dataLimit).skip(skip).toArray();
+
+            return {clientsCount, clients};
         } catch (err) {
             console.log(err);
             throw new err;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import ClientForm from "../../components/Clients/ClientForm/ClientForm";
 import {useNavigate} from "react-router-dom";
 
@@ -12,10 +12,10 @@ const AddClientContainer = (props) => {
                 ...prevState,
                 [fieldName]: value
             }
-        })
+        });
     }
 
-    const addClient = async () => {
+    const addClient = useCallback(async () => {
         try {
             const response = await fetch('http://localhost:5500/api/clients/addClient', {
                 method: 'POST',
@@ -32,7 +32,8 @@ const AddClientContainer = (props) => {
         } catch (err) {
             console.log(err);
         }
-    }
+
+    }, [clientFormData]);
 
     return <ClientForm
         formData={clientFormData}

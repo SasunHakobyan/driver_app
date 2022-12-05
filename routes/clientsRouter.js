@@ -27,9 +27,12 @@ router.get('/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const clients = await clientController.getClients();
+        const clientsData = await clientController.getClients({limit: req.query.limit, pageNumber: req.query.pageNumber});
+        const clients = clientsData.clients;
+
         res.json({
             responseCode: 200,
+            clientsCount: clientsData.clientsCount,
             data: {clients}
         });
 

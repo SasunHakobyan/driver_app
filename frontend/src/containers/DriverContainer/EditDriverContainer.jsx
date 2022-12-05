@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
@@ -18,7 +18,7 @@ const EditDriverContainer = () => {
         fetchDriver();
     }, []);
 
-    const fetchDriver = async () => {
+    const fetchDriver = useCallback(async () => {
         const response = await fetch(`http://localhost:5500/api/drivers/${driverId}`);
         const responseData = await response.json();
 
@@ -28,7 +28,8 @@ const EditDriverContainer = () => {
             const {username, password, tariff, rating} = responseData.data.driver;
             setDriverFormData({username, password, tariff, rating});
         }
-    }
+
+    }, [driverId]);
 
     const onNewDataChange = (fieldName, value) => {
         setDriverFormData((prevState) => {
@@ -39,7 +40,7 @@ const EditDriverContainer = () => {
         });
     }
 
-    const saveData = async () => {
+    const saveData = useCallback(async() => {
         const reqBody = {
             driverId: driverId,
             updateData: driverFormData
@@ -58,7 +59,8 @@ const EditDriverContainer = () => {
         } else if (responseData.responseCode === 404) {
             navigate('/notfound');
         }
-    }
+
+    }, [driverId, driverFormData])
 
     return (
         <div>

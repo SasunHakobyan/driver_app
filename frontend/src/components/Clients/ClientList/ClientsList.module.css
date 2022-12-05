@@ -1,3 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .listContainer {
     display: flex;
     flex-direction: row;
@@ -32,4 +39,17 @@
     font-size: 16px;
     color: #fff;
     vertical-align: bottom;
+}
+
+.limitDropdown {
+    height: fit-content;
+    padding: 17px 10px;
+    margin: 0 10px;
+    color: white;
+    background-color: #fcb214;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    outline: none;
 }

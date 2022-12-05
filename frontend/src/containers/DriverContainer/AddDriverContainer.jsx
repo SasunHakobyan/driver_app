@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
@@ -15,7 +15,7 @@ const AddDriverContainer = () => {
         });
     }
 
-    const addDriver = async () => {
+    const addDriver = useCallback(async() => {
         try {
             const response = await fetch('http://localhost:5500/api/drivers/addDriver', {
                 method: 'POST',
@@ -32,7 +32,7 @@ const AddDriverContainer = () => {
         } catch (err) {
             console.log(err);
         }
-    }
+    }, [driverFormData]);
 
     return (
         <DriverForm

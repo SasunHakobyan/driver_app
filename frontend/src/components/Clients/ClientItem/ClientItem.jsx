@@ -6,7 +6,7 @@ const ClientItem = (props) => {
 
     return (
         <tr className={classes.clientRow} key={client._id}>
-            <td>{props.index}</td>
+            <td>{props.itemNumber}</td>
             <td><NavLink to={`/editClient/${client._id}`}>{client.username}</NavLink></td>
             <td>{client.cardCredentials}</td>
             <td>{client.registerDate}</td>
