@@ -41,10 +41,3 @@ const Grid = (props) => {
 };
 
 export default Grid;
-
-/*
-* paginationData
-* drivers
-* setModal
-* deleteDriver
-* */
