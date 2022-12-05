@@ -2,12 +2,12 @@ import React, {useCallback, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import DriverForm from "../../components/Drivers/DriverForm/DriverForm";
 
-const AddDriverContainer = () => {
+const AddDriverContainer = (props) => {
     const navigate = useNavigate();
-    const [driverFormData, updateDriverFormData] = useState({});
+    const [driverFormData, setDriverFormData] = useState({});
 
     const onNewDataChange = (fieldName, value) => {
-        updateDriverFormData((prevState) => {
+        setDriverFormData((prevState) => {
             return {
                 ...prevState,
                 [fieldName]: value

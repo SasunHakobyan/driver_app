@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.addButton {
+    height: fit-content;
+    padding: 20px 30px;
+    margin: 0 10px;
+    color: white;
+    background-color: #fcb214;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.addButton:hover {
+    background-color: #f3a703;
+}
+
+.driversTable {
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    background-color: #fcb214;
+}
+
+.headingRow th {
+    border: none;
+    padding: 20px 30px;
+    font-size: 16px;
+    color: #fff;
+    vertical-align: bottom;
+}
+
+.limitDropdown {
+    height: fit-content;
+    padding: 17px 10px;
+    margin: 0 10px;
+    color: white;
+    background-color: #fcb214;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    outline: none;
+}

@@ -65,7 +65,10 @@ const EditDriverContainer = () => {
     return (
         <div>
             <h2>Edit Driver</h2>
-            <DriverForm formData={driverFormData} saveData={saveData} onNewDataChange={onNewDataChange} />
+            <DriverForm
+                formData={driverFormData}
+                saveData={saveData}
+                onNewDataChange={onNewDataChange} />
         </div>
     );
 };
