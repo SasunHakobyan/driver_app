@@ -5,7 +5,7 @@ const ClientItem = (props) => {
     const client = props.client;
 
     return (
-        <tr className={classes.clientRow} key={client._id}>
+        <tr key={props.itemNumber} className={classes.clientRow}>
             <td>{props.itemNumber}</td>
             <td><NavLink to={`/editClient/${client._id}`}>{client.username}</NavLink></td>
             <td>{client.cardCredentials}</td>

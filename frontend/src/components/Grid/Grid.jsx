@@ -23,15 +23,15 @@ const Grid = (props) => {
                         * props.paginationData.pageLimit);
 
                     return props.type === 'driver'
-                        ? <DriverItem itemNumber={itemNumber}
+                        ? <DriverItem key={itemNumber}
+                                      itemNumber={itemNumber}
                                       setModal={props.setModal}
-                                      key={item._id}
                                       driver={item}
                                       deleteDriver={props.deleteData}/>
-                        : <ClientItem itemNumber={itemNumber}
+                        : <ClientItem key={itemNumber}
+                                      itemNumber={itemNumber}
                                       setModal={props.setModal}
-                                      key={item._id}
-                                      client={item} s
+                                      client={item}
                                       deleteClient={props.deleteData}/>
                 })
             }

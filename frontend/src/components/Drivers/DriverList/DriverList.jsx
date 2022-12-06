@@ -1,4 +1,3 @@
-import DriverItem from "../DriverItem/DriverItem";
 import classes from './DriverList.module.css';
 import DeleteDriverModal from "../../Modal/DeleteDriverModal/DeleteDriverModal";
 import {NavLink} from "react-router-dom";

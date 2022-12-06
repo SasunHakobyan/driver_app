@@ -5,7 +5,7 @@ const DriverItem = (props) => {
     const driver = props.driver;
 
     return (
-        <tr className={classes.driverRow}>
+        <tr key={props.itemNumber} className={classes.driverRow}>
             <td>{props.itemNumber}</td>
             <td><NavLink to={`/editDriver/${driver._id}`}>{driver.username}</NavLink></td>
             <td>{driver.tariff}</td>

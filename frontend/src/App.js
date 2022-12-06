@@ -4,8 +4,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import ClientsListContainer from "./containers/ClientContainer/ClientsListContainer";
 import DriversListContainer from "./containers/DriverContainer/DriversListContainer";
-import EditClientContainer from "./containers/ClientContainer/EditClientContainer";
-import EditDriverContainer from "./containers/DriverContainer/EditDriverContainer";
 import AddDriverContainer from "./containers/DriverContainer/AddDriverContainer";
 import AddClientContainer from "./containers/ClientContainer/AddClientContainer";
 import NotFound from "./components/Error/NotFound";
@@ -19,12 +17,12 @@ function App() {
                     <div className="app-wrapper-content">
                         <Routes>
                             <Route path='/drivers' element={<DriversListContainer />} />
-                            <Route path='/addDriver' element={<AddDriverContainer/>} />
-                            <Route path='/editDriver/:driverId' element={<EditDriverContainer />} />
-s
+                            <Route path='/addDriver' element={<AddDriverContainer type='add'/>} />
+                            <Route path='/editDriver/:driverId' element={<AddDriverContainer type='edit' />} />
+
                             <Route path='/clients' element={<ClientsListContainer />} />
-                            <Route path='/addClient' element={<AddClientContainer />} />
-                            <Route path='/editClient/:clientId' element={<EditClientContainer />} />
+                            <Route path='/addClient' element={<AddClientContainer type='add' />} />
+                            <Route path='/editClient/:clientId' element={<AddClientContainer type='edit' />} />
 
                             <Route path='/notfound' element={<NotFound/>} />
                         </Routes>
